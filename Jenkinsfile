@@ -36,15 +36,27 @@ pipeline {
     }
 
 post {
-    always {
+    success {
         emailext(
-            subject: "Build ${currentBuild.currentResult}: ${JOB_NAME} #${BUILD_NUMBER}",
-            body: """<h3>Build Result: ${currentBuild.currentResult}</h3>
-<p>Project: ${JOB_NAME}</p>
-<p>Build Number: ${BUILD_NUMBER}</p>
-<p><a href="${BUILD_URL}console">Console Output</a></p>
+            subject: "SUCCESS: ${JOB_NAME} #${BUILD_NUMBER}",
+            body: """Build Successful
+Project: ${JOB_NAME}
+Build Number: ${BUILD_NUMBER}
+Build URL: ${BUILD_URL}
 """,
-            mimeType: 'text/html'
+            to: "prins07860@gmail.com"
+        )
+    }
+
+    failure {
+        emailext(
+            subject: "FAILURE: ${JOB_NAME} #${BUILD_NUMBER}",
+            body: """Build Failed
+Project: ${JOB_NAME}
+Build Number: ${BUILD_NUMBER}
+Check Console Output: ${BUILD_URL}console
+""",
+            to: "prins07860@gmail.com"
         )
     }
 }
