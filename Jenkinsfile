@@ -35,28 +35,17 @@ pipeline {
         }
     }
 
-   post {
-    success {
+ post {
+    always {
         emailext(
-            subject: "SUCCESS: Build #${BUILD_NUMBER}",
-            body: """Build Successful!
+            subject: "Build ${currentBuild.currentResult}: #${BUILD_NUMBER}",
+            body: """Build Result: ${currentBuild.currentResult}
 
 Project: ${JOB_NAME}
 Build Number: ${BUILD_NUMBER}
+Triggered by: ${BUILD_USER}
+
 Check Jenkins for details.
-""",
-            to: "prins07860@gmail.com"
-        )
-    }
-
-    failure {
-        emailext(
-            subject: "FAILURE: Build #${BUILD_NUMBER}",
-            body: """Build Failed!
-
-Project: ${JOB_NAME}
-Build Number: ${BUILD_NUMBER}
-Please check Console Output.
 """,
             to: "prins07860@gmail.com"
         )
