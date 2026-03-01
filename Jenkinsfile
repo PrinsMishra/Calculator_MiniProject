@@ -35,17 +35,15 @@ pipeline {
         }
     }
 
- post {
+post {
     always {
         emailext(
-            subject: "Build ${currentBuild.currentResult}: #${BUILD_NUMBER}",
-            body: """Build Result: ${currentBuild.currentResult}
-
-Project: ${JOB_NAME}
-Build Number: ${BUILD_NUMBER}
-Check Jenkins for details.
+            subject: "Build ${currentBuild.currentResult}: ${JOB_NAME} #${BUILD_NUMBER}",
+            body: """<h3>Build Result: ${currentBuild.currentResult}</h3>
+<p>Project: ${JOB_NAME}</p>
+<p>Build Number: ${BUILD_NUMBER}</p>
+<p><a href="${BUILD_URL}console">Console Output</a></p>
 """,
-            to: "prins07860@gmail.com",
             mimeType: 'text/html'
         )
     }
