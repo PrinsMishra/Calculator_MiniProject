@@ -35,12 +35,31 @@ pipeline {
         }
     }
 
-    post {
-        success {
-            echo 'Build Successful!'
-        }
-        failure {
-            echo 'Build Failed!'
-        }
+   post {
+    success {
+        emailext(
+            subject: "SUCCESS: Build #${BUILD_NUMBER}",
+            body: """Build Successful!
+
+Project: ${JOB_NAME}
+Build Number: ${BUILD_NUMBER}
+Check Jenkins for details.
+""",
+            to: "prins07860@gmail.com"
+        )
     }
+
+    failure {
+        emailext(
+            subject: "FAILURE: Build #${BUILD_NUMBER}",
+            body: """Build Failed!
+
+Project: ${JOB_NAME}
+Build Number: ${BUILD_NUMBER}
+Please check Console Output.
+""",
+            to: "prins07860@gmail.com"
+        )
+    }
+}
 }
