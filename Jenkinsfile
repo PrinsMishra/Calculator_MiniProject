@@ -43,11 +43,10 @@ pipeline {
 
 Project: ${JOB_NAME}
 Build Number: ${BUILD_NUMBER}
-Triggered by: ${BUILD_USER}
-
 Check Jenkins for details.
 """,
-            to: "prins07860@gmail.com"
+            to: "prins07860@gmail.com",
+            mimeType: 'text/html'
         )
     }
 }
