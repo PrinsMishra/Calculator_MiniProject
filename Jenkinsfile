@@ -33,31 +33,40 @@ pipeline {
                 }
             }
         }
+
+        stage('Deploy with Ansible') {
+            steps {
+                sh '''
+                ansible-playbook ansible/deploy.yml \
+                -i ansible/inventory.ini
+                '''
+            }
+        }
     }
 
-post {
-    success {
-        emailext(
-            subject: "SUCCESS: ${JOB_NAME} #${BUILD_NUMBER}",
-            body: """Build Successful
+    post {
+        success {
+            emailext(
+                subject: "SUCCESS: ${JOB_NAME} #${BUILD_NUMBER}",
+                body: """Build Successful
 Project: ${JOB_NAME}
 Build Number: ${BUILD_NUMBER}
 Build URL: ${BUILD_URL}
 """,
-            to: "prins07860@gmail.com"
-        )
-    }
+                to: "prins07860@gmail.com"
+            )
+        }
 
-    failure {
-        emailext(
-            subject: "FAILURE: ${JOB_NAME} #${BUILD_NUMBER}",
-            body: """Build Failed
+        failure {
+            emailext(
+                subject: "FAILURE: ${JOB_NAME} #${BUILD_NUMBER}",
+                body: """Build Failed
 Project: ${JOB_NAME}
 Build Number: ${BUILD_NUMBER}
 Check Console Output: ${BUILD_URL}console
 """,
-            to: "prins07860@gmail.com"
-        )
+                to: "prins07860@gmail.com"
+            )
+        }
     }
-}
 }
