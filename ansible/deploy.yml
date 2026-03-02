@@ -1,0 +1,20 @@
+---
+- name: Deploy Calculator Container
+  hosts: local
+  become: yes
+
+  tasks:
+
+    - name: Pull latest image
+      command: docker pull prins05688/calculator:latest
+
+    - name: Stop old container
+      command: docker stop calculator-container
+      ignore_errors: yes
+
+    - name: Remove old container
+      command: docker rm calculator-container
+      ignore_errors: yes
+
+    - name: Run new container
+      command: docker run -d --name calculator-container -p 8085:8080 prins05688/calculator:latest
