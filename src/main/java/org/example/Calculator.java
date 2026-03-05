@@ -1,5 +1,5 @@
 package org.example;
-import  java.util.*;
+
 public class Calculator {
 
     public static double add(double a, double b) {
@@ -20,38 +20,37 @@ public class Calculator {
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
 
-        while (true) {
-            System.out.println("\n--- Scientific Calculator ---");
-            System.out.println("1. Add");
-            System.out.println("2. Subtract");
-            System.out.println("3. Multiply");
-            System.out.println("4. Divide");
-            System.out.println("5. Exit");
-
-            System.out.print("Enter choice: ");
-            int choice = sc.nextInt();
-
-            if (choice == 5) {
-                System.out.println("Exiting...");
-                break;
-            }
-
-            System.out.print("Enter first number: ");
-            double a = sc.nextDouble();
-
-            System.out.print("Enter second number: ");
-            double b = sc.nextDouble();
-
-            switch (choice) {
-                case 1 -> System.out.println("Result: " + add(a, b));
-                case 2 -> System.out.println("Result: " + sub(a, b));
-                case 3 -> System.out.println("Result: " + mul(a, b));
-                case 4 -> System.out.println("Result: " + div(a, b));
-                default -> System.out.println("Invalid choice");
-            }
+        if (args.length < 3) {
+            System.out.println("Usage: <operation> <num1> <num2>");
+            System.out.println("Example: add 10 5");
+            return;
         }
-        sc.close();
+
+        String operation = args[0];
+        double a = Double.parseDouble(args[1]);
+        double b = Double.parseDouble(args[2]);
+
+        switch (operation.toLowerCase()) {
+
+            case "add":
+                System.out.println("Result: " + add(a, b));
+                break;
+
+            case "sub":
+                System.out.println("Result: " + sub(a, b));
+                break;
+
+            case "mul":
+                System.out.println("Result: " + mul(a, b));
+                break;
+
+            case "div":
+                System.out.println("Result: " + div(a, b));
+                break;
+
+            default:
+                System.out.println("Invalid operation. Use: add, sub, mul, div");
+        }
     }
 }
