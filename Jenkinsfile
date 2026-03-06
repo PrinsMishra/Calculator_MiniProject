@@ -8,16 +8,16 @@ pipeline {
     stages {
 
         stage('Build Project') {
-            steps {
-                sh 'mvn clean package -DskipTests'
-            }
-        }
+    steps {
+        sh "${tool 'Maven'}/bin/mvn clean package -DskipTests"
+    }
+}
 
-        stage('Run Tests') {
-            steps {
-                sh 'mvn test'
-            }
-        }
+stage('Run Tests') {
+    steps {
+        sh "${tool 'Maven'}/bin/mvn test"
+    }
+}
 
         stage('Verify JAR') {
             steps {
