@@ -39,6 +39,7 @@ stage('Run Tests') {
                     sh 'docker push $DOCKER_IMAGE'
                 }
             }
+            
         }
 
         stage('Deploy with Ansible') {
