@@ -5,7 +5,7 @@
 
   tasks:
 
-    - name: Pull latest image
+    - name: Pull latest Docker image
       command: docker pull prins05688/calculator:latest
 
     - name: Stop old container
@@ -17,4 +17,4 @@
       ignore_errors: yes
 
     - name: Run new container
-      command: docker run -d --name calculator-container prins05688/calculator:latest add 10 5
+      command: docker run -it --name calculator-container prins05688/calculator:latest
