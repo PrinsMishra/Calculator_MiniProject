@@ -17,4 +17,4 @@
       ignore_errors: yes
 
     - name: Run new container
-      command: docker run -it --name calculator-container prins05688/calculator:latest
+      command: docker run -dit --name calculator-container prins05688/calculator:latest
