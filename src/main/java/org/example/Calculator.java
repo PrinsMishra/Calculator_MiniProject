@@ -48,19 +48,22 @@ public static void main(String[] args) {
     int choice;
 
     do {
-        System.out.println("\nScientific Calculator");
-        System.out.println("1. Add");
-        System.out.println("2. Subtract");
-        System.out.println("3. Multiply");
-        System.out.println("4. Divide");
-        System.out.println("5. Power");
-        System.out.println("6. Square Root");
-        System.out.println("7. Logarithm");
-        System.out.println("8. Factorial");
-        System.out.println("9. Exit");
 
-        System.out.print("Enter choice: ");
-        choice = scanner.nextInt();
+    System.out.println("\nScientific Calculator");
+    System.out.println("1. Add");
+    System.out.println("2. Subtract");
+    System.out.println("3. Multiply");
+    System.out.println("4. Divide");
+    System.out.println("5. Power");
+    System.out.println("6. Square Root");
+    System.out.println("7. Logarithm");
+    System.out.println("8. Factorial");
+    System.out.println("9. Exit");
+
+    System.out.print("Enter choice: ");
+    choice = scanner.nextInt();
+
+    try {
 
         double a, b;
 
@@ -127,7 +130,13 @@ public static void main(String[] args) {
                 System.out.println("Invalid choice");
         }
 
-    } while (choice != 9);
+    }
+    catch (ArithmeticException e) {
+        System.out.println("Error: " + e.getMessage());
+    }
+
+}
+    while (choice != 9);
 
     scanner.close();
 }
