@@ -43,4 +43,30 @@ public class CalculatorTest {
     void testDecimalDivision() {
         assertEquals(2.5, Calculator.div(5, 2));
     }
+    @Test
+void testPower() {
+    assertEquals(8, Calculator.power(2, 3));
+}
+
+@Test
+void testSquareRoot() {
+    assertEquals(4, Calculator.squareRoot(16));
+}
+
+@Test
+void testLogarithm() {
+    assertEquals(Math.log(10), Calculator.logarithm(10));
+}
+
+@Test
+void testFactorial() {
+    assertEquals(120, Calculator.factorial(5));
+}
+
+@Test
+void testNegativeSquareRoot() {
+    assertThrows(ArithmeticException.class, () -> {
+        Calculator.squareRoot(-4);
+    });
+}
 }
