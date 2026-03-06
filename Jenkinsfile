@@ -62,7 +62,7 @@ Project: ${JOB_NAME}
 Build Number: ${BUILD_NUMBER}
 Build URL: ${BUILD_URL}
 """,
-            to: "prins07860@gmail.com"
+            to: "mishraprins323@gmail.com"
         )
     }
 
@@ -77,7 +77,7 @@ Build Number: ${BUILD_NUMBER}
 Check Console Output:
 ${BUILD_URL}console
 """,
-            to: "prins07860@gmail.com"
+            to: "mishraprins323@gmail.com"
         )
     }
 }
