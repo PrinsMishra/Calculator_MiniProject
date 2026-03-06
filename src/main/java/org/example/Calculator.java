@@ -18,39 +18,117 @@ public class Calculator {
         if (b == 0) throw new ArithmeticException("Cannot divide by zero");
         return a / b;
     }
+    public static double power(double base, double exponent) {
+    return Math.pow(base, exponent);
+}
 
-    public static void main(String[] args) {
+public static double squareRoot(double num) {
+    if (num < 0) throw new ArithmeticException("Square root of negative number");
+    return Math.sqrt(num);
+}
 
-        if (args.length < 3) {
-            System.out.println("Usage: <operation> <num1> <num2>");
-            System.out.println("Example: add 10 5");
-            return;
-        }
+public static double logarithm(double num) {
+    if (num <= 0) throw new ArithmeticException("Logarithm of non-positive number");
+    return Math.log(num);
+}
 
-        String operation = args[0];
-        double a = Double.parseDouble(args[1]);
-        double b = Double.parseDouble(args[2]);
+public static double factorial(double num) {
+    if (num < 0) throw new ArithmeticException("Factorial of negative number");
 
-        switch (operation.toLowerCase()) {
+    double result = 1;
+    for (int i = 1; i <= num; i++) {
+        result *= i;
+    }
+    return result;
+}
 
-            case "add":
+public static void main(String[] args) {
+
+    java.util.Scanner scanner = new java.util.Scanner(System.in);
+    int choice;
+
+    do {
+        System.out.println("\nScientific Calculator");
+        System.out.println("1. Add");
+        System.out.println("2. Subtract");
+        System.out.println("3. Multiply");
+        System.out.println("4. Divide");
+        System.out.println("5. Power");
+        System.out.println("6. Square Root");
+        System.out.println("7. Logarithm");
+        System.out.println("8. Factorial");
+        System.out.println("9. Exit");
+
+        System.out.print("Enter choice: ");
+        choice = scanner.nextInt();
+
+        double a, b;
+
+        switch (choice) {
+
+            case 1:
+                System.out.print("Enter two numbers: ");
+                a = scanner.nextDouble();
+                b = scanner.nextDouble();
                 System.out.println("Result: " + add(a, b));
                 break;
 
-            case "sub":
+            case 2:
+                System.out.print("Enter two numbers: ");
+                a = scanner.nextDouble();
+                b = scanner.nextDouble();
                 System.out.println("Result: " + sub(a, b));
                 break;
 
-            case "mul":
+            case 3:
+                System.out.print("Enter two numbers: ");
+                a = scanner.nextDouble();
+                b = scanner.nextDouble();
                 System.out.println("Result: " + mul(a, b));
                 break;
 
-            case "div":
+            case 4:
+                System.out.print("Enter two numbers: ");
+                a = scanner.nextDouble();
+                b = scanner.nextDouble();
                 System.out.println("Result: " + div(a, b));
                 break;
 
+            case 5:
+                System.out.print("Enter base and exponent: ");
+                a = scanner.nextDouble();
+                b = scanner.nextDouble();
+                System.out.println("Result: " + power(a, b));
+                break;
+
+            case 6:
+                System.out.print("Enter number: ");
+                a = scanner.nextDouble();
+                System.out.println("Result: " + squareRoot(a));
+                break;
+
+            case 7:
+                System.out.print("Enter number: ");
+                a = scanner.nextDouble();
+                System.out.println("Result: " + logarithm(a));
+                break;
+
+            case 8:
+                System.out.print("Enter number: ");
+                a = scanner.nextDouble();
+                System.out.println("Result: " + factorial(a));
+                break;
+
+            case 9:
+                System.out.println("Exiting calculator...");
+                break;
+
             default:
-                System.out.println("Invalid operation. Use: add, sub, mul, div");
+                System.out.println("Invalid choice");
         }
-    }
+
+    } while (choice != 9);
+
+    scanner.close();
+}
 }
