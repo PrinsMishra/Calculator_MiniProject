@@ -7,15 +7,21 @@ pipeline {
 
     stages {
 
-        stage('Build & Test') {
+        stage('Build Project') {
             steps {
-                sh 'mvn clean test'
+                sh 'mvn clean package -DskipTests'
             }
         }
 
-        stage('Package') {
+        stage('Run Tests') {
             steps {
-                sh 'mvn package'
+                sh 'mvn test'
+            }
+        }
+
+        stage('Verify JAR') {
+            steps {
+                sh 'ls -lh target/'
             }
         }
 
@@ -44,33 +50,31 @@ pipeline {
         }
     }
 
- post {
-    success {
-        emailext(
-            subject: "SUCCESS: ${JOB_NAME} #${BUILD_NUMBER}",
-            body: """Build Successful
+    post {
+        success {
+            emailext(
+                subject: "SUCCESS: ${JOB_NAME} #${BUILD_NUMBER}",
+                body: """Build Successful
 
 Project: ${JOB_NAME}
 Build Number: ${BUILD_NUMBER}
 Build URL: ${BUILD_URL}
 """,
-            to: "prins07860@gmail.com",
-            recipientProviders: [developers(), requestor()]
-        )
-    }
+                to: "prins07860@gmail.com"
+            )
+        }
 
-    failure {
-        emailext(
-            subject: "FAILURE: ${JOB_NAME} #${BUILD_NUMBER}",
-            body: """Build Failed
+        failure {
+            emailext(
+                subject: "FAILURE: ${JOB_NAME} #${BUILD_NUMBER}",
+                body: """Build Failed
 
 Project: ${JOB_NAME}
 Build Number: ${BUILD_NUMBER}
 Check Console Output: ${BUILD_URL}console
 """,
-            to: "prins07860@gmail.com",
-            recipientProviders: [developers(), requestor()]
-        )
+                to: "prins07860@gmail.com"
+            )
+        }
     }
-}
 }
