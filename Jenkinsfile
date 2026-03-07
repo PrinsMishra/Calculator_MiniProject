@@ -11,7 +11,7 @@ pipeline {
         stage('Build Project') {
     steps {
         sh "${tool 'Maven'}/bin/mvn clean package -DskipTests"
-        sh 'exit 1'
+       // sh 'exit 1'
     }
 }
 
