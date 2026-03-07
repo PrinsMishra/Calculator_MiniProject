@@ -13,6 +13,7 @@ pipeline {
         sh "${tool 'Maven'}/bin/mvn clean package -DskipTests"
     }
 }
+        
 
         
 stage('Run Tests') {
