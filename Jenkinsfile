@@ -70,6 +70,7 @@ Build URL: ${BUILD_URL}
         emailext(
             subject: "FAILURE: ${JOB_NAME} #${BUILD_NUMBER}",
             body: """Build Failed
+            
 
 Project: ${JOB_NAME}
 Build Number: ${BUILD_NUMBER}
