@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "prins05688/calculator"
+        RECIPIENT_EMAIL = "prins07860@gmail.com"
     }
 
     stages {
@@ -52,7 +53,6 @@ stage('Run Tests') {
         }
     }
     post {
-
     success {
         emailext(
             subject: "SUCCESS: ${JOB_NAME} #${BUILD_NUMBER}",
@@ -62,7 +62,7 @@ Project: ${JOB_NAME}
 Build Number: ${BUILD_NUMBER}
 Build URL: ${BUILD_URL}
 """,
-            to: "Prins.Mishra@iiitb.ac.in"
+            to: "${RECIPIENT_EMAIL}"
         )
     }
 
@@ -77,9 +77,8 @@ Build Number: ${BUILD_NUMBER}
 Check Console Output:
 ${BUILD_URL}console
 """,
-            to: "Prins.Mishra@iiitb.ac.in"
+            to: "${RECIPIENT_EMAIL}"
         )
     }
 }
-
 }
