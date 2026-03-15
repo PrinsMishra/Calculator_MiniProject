@@ -60,7 +60,7 @@ public class Calculator {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        sc.nextLine();
+        sc.nextLine(); // consume the initial Enter press when doing: docker attach
 
         while (true) {
 
@@ -75,8 +75,15 @@ public class Calculator {
             System.out.println("8. Factorial");
             System.out.println("9. Exit");
 
-            System.out.print("Enter choice: ");
-            int choice = sc.nextInt();
+            System.out.print("Enter choice (1-9): ");
+            int choice;
+            try {
+                choice = sc.nextInt();
+            } catch (java.util.InputMismatchException e) {
+                System.out.println("Invalid input! Please enter a number between 1 and 9.");
+                sc.next(); // clear the bad input
+                continue;
+            }
 
             if (choice == 9) {
                 System.out.println("Exiting...");
