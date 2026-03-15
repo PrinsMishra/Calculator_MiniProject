@@ -17,4 +17,4 @@
       ignore_errors: yes
 
     - name: Run new container
-      command: docker run -d --name calculator-container -p 8085:8080 prins05688/calculator:latest
+      command: docker run -dit --name calculator-container --restart unless-stopped prins05688/calculator:latest
