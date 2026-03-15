@@ -5,6 +5,7 @@ pipeline {
         DOCKER_IMAGE = "prins05688/calculator"
         DOCKER_TAG  = "latest"
     }
+    
 
     stages {
 
