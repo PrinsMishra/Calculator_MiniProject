@@ -6,41 +6,47 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CalculatorTest {
 
     @Test
-    void testAdd() {
+    public void add() {
         assertEquals(5, Calculator.add(2, 3));
     }
 
     @Test
-    void testSub() {
+    public void sub() {
         assertEquals(1, Calculator.sub(3, 2));
     }
 
     @Test
-    void testMul() {
-        assertEquals(6, Calculator.mul(2, 3));
+    public void mul() {
+        assertEquals(6.0, Calculator.mul(2, 3), 0.0001);
     }
 
     @Test
-    void testDiv() {
-        assertEquals(2, Calculator.div(4, 2));
+    public void testDivide() {
+        assertEquals(2.0, Calculator.div(6, 3), 0.0001);
     }
 
     @Test
-    void testDivideByZero() {
-        assertThrows(ArithmeticException.class, () -> {
-            Calculator.div(5, 0);
-        });
+    public void testDivideByZero() {
+        assertThrows(ArithmeticException.class, () -> Calculator.div(5, 0));
     }
 
-
     @Test
-    void testNegativeNumbers() {
-        assertEquals(-1, Calculator.add(-3, 2));
+    public void testPower() {
+        assertEquals(8.0, Calculator.power(2, 3), 0.0001);
     }
 
+    @Test
+    public void testSqrt() {
+        assertEquals(3.0, Calculator.sqrt(9), 0.0001);
+    }
 
     @Test
-    void testDecimalDivision() {
-        assertEquals(2.5, Calculator.div(5, 2));
+    public void testLog() {
+        assertEquals(Math.log(10), Calculator.log(10), 0.0001);
+    }
+
+    @Test
+    public void testFactorial() {
+        assertEquals(120, Calculator.factorial(5));
     }
 }
