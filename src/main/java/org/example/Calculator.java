@@ -60,7 +60,7 @@ public class Calculator {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        sc.nextLine(); // consume the initial Enter press when doing: docker attach
+        sc.nextLine(); 
 
         while (true) {
 
