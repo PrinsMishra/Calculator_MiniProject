@@ -8,6 +8,7 @@
     - name: Pull latest image
       command: docker pull prins05688/calculator:latest
 
+
     - name: Stop old container
       command: docker stop calculator-container
       ignore_errors: yes
