@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "prins05688/calculator"
+        DOCKER_TAG  = "latest"
     }
 
     stages {
@@ -21,7 +22,7 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -t $DOCKER_IMAGE .'
+                sh 'docker build -t $DOCKER_IMAGE:$DOCKER_TAG .'
             }
         }
 
@@ -29,8 +30,14 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
                     sh 'echo $PASS | docker login -u $USER --password-stdin'
-                    sh 'docker push $DOCKER_IMAGE'
+                    sh 'docker push $DOCKER_IMAGE:$DOCKER_TAG'
                 }
+            }
+        }
+
+        stage('Deploy with Ansible') {
+            steps {
+                sh 'ansible-playbook -i ansible/inventory.ini ansible/deploy.yml'
             }
         }
     }
